@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    </head>
+    <body>
+    
+    
+    
+    
+    
+      <script src="https://unpkg.com/vue@2.5.15/dist/vue.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
+      
+      <div id="todos">
+        <div v-for="todo in todos">
+           {{ todo.name }}
+           {{ todo.desc }}
+           <button v-on:click="deleteTodo(todo)">delete todo</button>
+        </div>
+        <button v-on:click="addTodo()">Add todo</button>
+      </div>
+     
+      <script type="text/javascript">
+         var todosArray = [
+            {
+               'id' : 1,
+               'name' : 'todo1',
+               'desc' : 'this is todo1'
+            },
+            {
+               'id' : 2,
+               'name' : 'todo2',
+               'desc' : 'this is todo2'
+            }
+         ]
+
+         var todosModel = new Vue({
+            el: '#todos',
+            data: {
+               todos: todosArray,
+               id_counter: todosArray.length
+            },
+            methods: {
+              addTodo: function() {
+                 this.id_counter += 1;
+                 this.todos.push({
+                   'id' : this.id_counter,
+                   'name' : 'todo' + String(this.id_counter),
+                   'desc' : 'this is another todo'
+                 })
+              },
+              deleteTodo: function(todo) {
+                 this.todos.splice(this.todos.indexOf(todo), 1);
+              }
+            }
+          })
+        </script>
+      
+      
+      
+      
+      
+       
+       
+    </body>
+</html>
